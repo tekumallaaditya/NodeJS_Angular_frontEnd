@@ -6,7 +6,7 @@
         <h2 align="center">Welcome to {{ title }}!</h2>
       </div>
     </div>
-    <div class="table-responsive">
+    <div class="table-responsive col-md-8">
       <table class="table">
         <thead>
           <tr>
@@ -19,16 +19,50 @@
           </tr>       
         </thead>
         <tbody>
-          <tr *ngFor= "let each of employees">
-            <td>{{ each.name}}</td>
-            <td>{{ each.email }}</td>
-            <td>{{ each.DOB }}</td>
-            <td>{{ each.department}}</td>
-            <td>{{ each.gender }}</td>
-            <td>{{ each.age}}</td>            
-          </tr>        
+            <tr *ngFor= "let each of employees"  >
+                <td>{{ each.name}}</td>
+                <td>{{ each.email }}</td>
+                <td>{{ each.DOB }}</td>
+                <td>{{ each.department}}</td>
+                <td>{{ each.gender }}</td>
+                <td>{{ each.age}}</td>
+                <button class="btn btn-danger" (click)="delInfo(each)">Delete</button>&nbsp;
+                <button class="btn btn-primary" (click)= "editInfo(each)">Edit</button>            
+              </tr>  
         </tbody>
       </table>
+    </div>
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h2 align="center">Add/Update info</h2>
+        </div>
+        <div class="panel-body">
+          <form class="form-inline" #employeeForm = "ngForm" novalidate>
+            <div class="form-group">
+              <label for="Name">Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="Name" class="form-control" required #Name = "ngModel" [(ngModel)] = "employeeName">
+            </div>&nbsp;<br><br>
+            <div class="form-group">
+              <label for="Email">Email</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="email" name="Email" class="form-control" required align="right" #Email = "ngModel" [(ngModel)] = "employeeEmail">
+            </div><br><br>
+            <div class="form-group">
+              <label for="DOB">DOB</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="DOB" class="form-control" required style="float: right;" #DOB = "ngModel" [(ngModel)] = "employeeDOB">
+            </div><br><br>
+            <div class="form-group">
+              <label for="Department">Department</label>&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="Department" class="form-control" required #Department = "ngModel" [(ngModel)] = "employeeDepartment">
+            </div><br><br>
+            <div class="form-group">
+              <label for="Gender">Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input type="text" name="Gender" class="form-control" required #Gender = "ngModel" [(ngModel)] = "employeeGender">
+            </div><br><br>
+            <button type="submit" class="btn btn-success">Create</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary" (click) = "UpdateInfo(employeeForm)">Update</button>            
+          </form>
+        </div>
+      </div>      
     </div>
   </div>
  
