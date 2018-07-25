@@ -38,7 +38,7 @@
           <h2 align="center">Add/Update info</h2>
         </div>
         <div class="panel-body">
-          <form class="form-inline" #employeeForm = "ngForm" novalidate>
+          <form class="form-inline" #employeeForm = "ngForm" novalidate (ngSubmit)= "CreateEmployee(employeeForm)">
             <div class="form-group">
               <label for="Name">Name</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="text" name="Name" class="form-control" required #Name = "ngModel" [(ngModel)] = "employeeName">
@@ -49,7 +49,7 @@
             </div><br><br>
             <div class="form-group">
               <label for="DOB">DOB</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <input type="text" name="DOB" class="form-control" required style="float: right;" #DOB = "ngModel" [(ngModel)] = "employeeDOB">
+              <input type="date" name="DOB" class="form-control" required style="float: right;" #DOB = "ngModel" [(ngModel)] = "employeeDOB">
             </div><br><br>
             <div class="form-group">
               <label for="Department">Department</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -59,7 +59,7 @@
               <label for="Gender">Gender</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               <input type="text" name="Gender" class="form-control" required #Gender = "ngModel" [(ngModel)] = "employeeGender">
             </div><br><br>
-            <button type="submit" class="btn btn-success">Create</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary" (click) = "UpdateInfo(employeeForm)">Update</button>            
+            <button type="submit" class="btn btn-success" [disabled] = "!employeeForm.valid">Create</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary" (click) = "UpdateInfo(employeeForm)">Update</button>            
           </form>
         </div>
       </div>      

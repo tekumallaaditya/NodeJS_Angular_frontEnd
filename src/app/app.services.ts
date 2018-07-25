@@ -25,17 +25,30 @@ export class EmployeeInfoService{
         return this.http.post(this._employeeURL+'del', body).map((response) => response.json()).catch(this.handleError);
     }
 
-    UpdateEmployee(updateData):Observable<any>{
-        console.log( 'received in services '+ updateData.Name)
+    UpdateEmployee(updateData, age):Observable<any>{
+        console.log( 'received in services '+ updateData.Name + 'age is->' + age)
         const body: any = {
             name : updateData.Name,
             email : updateData.Email,
             DOB : updateData.DOB,
             department: updateData.Department,
             gender : updateData.Gender,
-            age: updateData.Age            
+            age: age            
         }
         return this.http.post(this._employeeURL+'update', body).map((response) => response.json()).catch(this.handleError);
+    }
+
+    CreateEmployee(createData, age): Observable<any>{
+        console.log('received in services' + createData.Name + age);
+        const body: any = {
+            name : createData.Name,
+            email : createData.Email,
+            DOB : createData.DOB,
+            department: createData.Department,
+            gender : createData.Gender,
+            age: age            
+        }
+        return this.http.post(this._employeeURL+'create', body).map((response) => response.json()).catch(this.handleError);        
     }
 
     private handleError(error: Response){
